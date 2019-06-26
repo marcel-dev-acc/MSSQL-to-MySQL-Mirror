@@ -5,6 +5,8 @@
 Pre-requisites:
  - Microsoft SQL Server
  - MySQL Server
+ - "pip install pyodbc"
+ - "pip install mysql"
  
  Microsoft Triggers / Scheduled Events:
  
