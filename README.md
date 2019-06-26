@@ -7,5 +7,7 @@ Pre-requisites:
  - MySQL Server
  
  Microsoft Triggers / Scheduled Events:
+ 
  a) Press: "Windows Key" + R
+ 
  b) Type: "taskschd.msc"
