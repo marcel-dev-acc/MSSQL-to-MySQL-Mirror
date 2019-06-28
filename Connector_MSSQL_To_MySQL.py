@@ -171,7 +171,7 @@ for row in mssqlresults:
 	msvar2Val = str(row[1])
 	msvar3Val = str(row[2])
 	
-	sql = "INSERT INTO " + mydatabase + "(" + myvar1 + "," + myvar2 + "," + myvar3 + ") VALUES('" + msvar1Val + "','" + msvar2Val + "','" + msvar3Val + "')"
+	sql = "INSERT INTO " + mydatabase + '.' + mytable + "(" + myvar1 + "," + myvar2 + "," + myvar3 + ") VALUES('" + msvar1Val + "','" + msvar2Val + "','" + msvar3Val + "')"
 
 	try:
 		mycursor.execute(sql)
