@@ -141,7 +141,7 @@ for row in mssqlresults:
 	msvar2Val = str(row[1])
 	msvar3Val = str(row[2])
 
-	sql = "UPDATE " + mydatabase + """
+	sql = "UPDATE " + mydatabase + '.' + mytable + """
 	SET """ + msvar2 + "= '" + msvar2Val + """'
 	,""" + msvar3 + " = " + msvar3Val + """
 	WHERE """ + msvar1 + " = " + msvar1Val
