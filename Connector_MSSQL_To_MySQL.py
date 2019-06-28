@@ -15,11 +15,11 @@ import os
 
 #Program Variables
 	#MSSQL Variables
-msdriver = {SQL Server}
+msdriver = '\'Driver=msdriver;\''
 msserver = '############' 			#<<<--- Place server host ID here
 msdatabase = '############' 		#<<<--- Place database name here
 mstableextension = '############'	#<<<--- Place database table name extension here
-msconnectiontrust = yes
+msconnectiontrust = 'yes'
 mstable = '############'			#<<<--- Place Microsoft SQL Server table name here
 msvar1 = '############'				#<<<--- Place first MSSQL variable here, NB: must be the ID
 msvar2 = '############'				#<<<--- Place second MSSQL variable here
@@ -54,7 +54,7 @@ errortable = '############'			#<<<--- Place error system table here
 ##############################################################
 
 #Define Connections
-conn = pyodbc.connect(Driver=msdriver; Server=msserver; Database=msdatabase; Trusted_Connection=msconnectiontrust;)
+conn = pyodbc.connect(msdriver + '\'Server=' + msserver + ';\'' + '\'Database= ' + msdatabase + ';\'' + '\'Trusted_Connection=' + msconnectiontrust + ';\'')
 mydb = mysql.connector.connect(host=myhost, user=myusername, passwd=mypassword, database=mydatabase)
 
 #Define Error File
@@ -128,8 +128,8 @@ SELECT
 	 a.""" + msvar1 + """
     ,a.""" + msvar2 + """
 	,a.""" + msvar3 + """
-FROM OPENQUERY(\"""" + mydatabase + """\",'SELECT * FROM """ + mytable + """') AS a
-LEFT JOIN """ + msdatabase + "." + mstableextension + "." + mstable + """ AS b ON a.""" + msvar1 + " = b." + myvar1 + """
+FROM """ + msdatabase + "." + mstableextension + "." + mstable + """ AS a
+LEFT JOIN OPENQUERY(\"""" + mydatabase + """\",'SELECT * FROM """ + mytable + """') AS b ON a.""" + msvar1 + " = b." + myvar1 + """
 WHERE a.""" + msvar2 + " <>  b." + myvar2 + """
 OR a.""" + msvar3 + " <> b." + myvar3
 
@@ -160,8 +160,8 @@ SELECT
 	 a.""" + msvar1 + """
     ,a.""" + msvar2 + """
 	,a.""" + msvar3 + """
-FROM OPENQUERY(\"""" + mydatabase + """\",'SELECT * FROM """ + mytable + """') AS a
-LEFT JOIN """ + msdatabase + "." + mstableextension + "." + mstable + """ AS b ON a.""" + msvar1 + " = b." + myvar1 + """
+FROM """ + msdatabase + "." + mstableextension + "." + mstable + """ AS a
+LEFT JOIN OPENQUERY(\"""" + mydatabase + """\",'SELECT * FROM """ + mytable + """') AS b ON a.""" + msvar1 + " = b." + myvar1 + """
 WHERE b.""" + myvar1 + " IS NULL"
 
 mssqlresults = cursor.execute(sql)
